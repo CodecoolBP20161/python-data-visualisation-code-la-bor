@@ -14,11 +14,16 @@ class Connect_database:
     # def __init__(self, connect_str, conn, cursor):
 
     @staticmethod
-    def run_query(query):
-        Connect_database.cursor.execute(query)
-        rows = Connect_database.cursor.fetchall()
-        print(rows)
+    def run(command_list):
+        process = subprocess.run(command_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        error = process.stderr.decode("utf-8")  # returning the stderr text, if any
+        if len(error) > 0:
+            return error
+        return process.stdout.decode("utf-8")
 
+    @staticmethod
+    def run_sql_file(file_name):
+        return run(['psql', '-f', file_name])
 
     #     # removing the test table if it already exists
     #     cursor.execute("""DROP TABLE IF EXISTS project;""")
@@ -33,5 +38,5 @@ class Connect_database:
     # except Exception as e:
     #     print("Uh oh, can't connect. Invalid dbname, user or password?")
     #     print(e)
-query = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') FROM project GROUP BY company_name;"
-Connect_database.run_query(query)
+# query = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') FROM project GROUP BY company_name;"
+# Connect_database.run_query(query)
