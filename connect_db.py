@@ -1,9 +1,11 @@
 import psycopg2
+import subprocess
 
 
 class Connect_database:
     # setup connection string
-    connect_str = "dbname='eszter' user='eszter' host='localhost' password='postgres'"
+    with open('connect_str.txt', "r") as f:
+        connect_str = f.readline()
     # use our connection values to establish a connection
     conn = psycopg2.connect(connect_str)
     # set autocommit option, to do every query when we call it
@@ -23,7 +25,7 @@ class Connect_database:
 
     @staticmethod
     def run_sql_file(file_name):
-        return run(['psql', '-f', file_name])
+        print(Connect_database.run(['psql', '-f', file_name]))
 
     #     # removing the test table if it already exists
     #     cursor.execute("""DROP TABLE IF EXISTS project;""")
