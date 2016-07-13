@@ -1,22 +1,31 @@
-from connect_db import Connect_database
+from connect_db import ConnectDatabase
+from tagcloudgen import TagCloudGen
+from companytagcloudgen import CompanyTagCloudGen
+from company import Company
 
 
 class Menu:
-    def choose():
+
+    @staticmethod
+    def choose(cls):
         option = input("Please enter a number: ")
         if option == "1":
-            Connect_database.run_sql_file('clients_query.sql')
+            # tagcloud = CompanyTagCloudGen
+            companies = Company.get_all()
+            TagCloudGen.display(companies[0].name)
         elif option == "2":
-            Connect_database.run_query(file_name)
+            ConnectDatabase.run_query(file_name)
         elif option == "q":
             exit()
         # else:
         #     raise KeyError("There is no such option.")
 
-    def handle_menu():
+    @staticmethod
+    def handle_menu(cls):
         print("Main menu\n", "1: Client tag-cloud\n", "2: Project tag-cloud\n", "Press Q to EXIT")
 
-    def main():
+    @staticmethod
+    def main(cls):
         while True:
             Menu.handle_menu()
             try:
@@ -25,8 +34,5 @@ class Menu:
                 print("error message")
 
 
-
 if __name__ == '__main__':
     Menu.main()
-
-# file_name = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') FROM project GROUP BY company_name;"
