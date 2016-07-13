@@ -2,7 +2,7 @@ import psycopg2
 import subprocess
 
 
-class Connect_database:
+class ConnectDatabase:
     # setup connection string
     with open('connect_str.txt', "r") as f:
         connect_str = f.readline()
@@ -13,19 +13,11 @@ class Connect_database:
     # create a psycopg2 cursor that can execute queries
     cursor = conn.cursor()
 
-    # def __init__(self, connect_str, conn, cursor):
-
-    @staticmethod
-    def run(command_list):
-        process = subprocess.run(command_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        error = process.stderr.decode("utf-8")  # returning the stderr text, if any
-        if len(error) > 0:
-            return error
-        return process.stdout.decode("utf-8")
-
-    @staticmethod
-    def run_sql_file(file_name):
-        print(Connect_database.run(['psql', '-f', file_name]))
+    @classmethod
+    def run_query(cls, query):
+        cls.cursor.execute(query)
+        rows = cls.cursor.fetchall()
+        return rows
 
     #     # removing the test table if it already exists
     #     cursor.execute("""DROP TABLE IF EXISTS project;""")
@@ -40,5 +32,5 @@ class Connect_database:
     # except Exception as e:
     #     print("Uh oh, can't connect. Invalid dbname, user or password?")
     #     print(e)
-# query = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') FROM project GROUP BY company_name;"
-# Connect_database.run_query(query)
+query = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') FROM project GROUP BY company_name;"
+ConnectDatabase.run_query(query)
