@@ -3,6 +3,13 @@ from PIL import ImageFont
 from PIL import ImageDraw
 
 
+class TagCloudItem:
+    def __init__(self, label, font_size, color):
+        self.label = label
+        self.font_size = font_size
+        self.color = color
+
+
 class TagCloudGen:
     def __init__(self, font, size, color, position, content):
         self.font = font
