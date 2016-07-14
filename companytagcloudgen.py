@@ -11,9 +11,11 @@ class CompanyTagCloudGen(TagCloudGen):
         for company in companies:
             if company.project_count > max_count:
                 max_count = company.project_count
-            elif company.project_count < min_count:
+            if company.project_count < min_count:
                 min_count = company.project_count
-            elif company.project_colors:
+
+        for company in companies:      
+            if company.project_colors:
                 self.tag_cloud_items.append(TagCloudItem(company.name, self.scaling(
                     company, min_count, max_count), self.color_avg(
                     company.project_colors.split(" "))))
@@ -36,16 +38,26 @@ class CompanyTagCloudGen(TagCloudGen):
     @staticmethod
     def scaling(company, min_count, max_count):
         scale = max_count - min_count
-        def_font_size = 4
-        if company.project_count > 0.8*scale:
+        def_font_size = 3
+        if company.project_count > 0.9 * scale:
+            return def_font_size * 10
+        elif 0.9 * scale >= company.project_count > 0.8 * scale:
+            return def_font_size * 9
+        elif 0.8 * scale >= company.project_count > 0.7 * scale:
+            return def_font_size * 8
+        elif 0.7 * scale >= company.project_count > 0.6 * scale:
+            return def_font_size * 7
+        elif 0.6 * scale >= company.project_count > 0.5 * scale:
+            return def_font_size * 6
+        elif 0.5 * scale >= company.project_count > 0.4 * scale:
             return def_font_size * 5
-        elif 0.8*scale > company.project_count > 0.6*scale:
+        elif 0.4 * scale >= company.project_count > 0.3 * scale:
             return def_font_size * 4
-        elif 0.6*scale > company.project_count > 0.4*scale:
+        elif 0.3 * scale >= company.project_count > 0.2 * scale:
             return def_font_size * 3
-        elif 0.4*scale > company.project_count > 0.2*scale:
+        elif 0.2 * scale >= company.project_count > 0.1 * scale:
             return def_font_size * 2
-        elif 0.2*scale > company.project_count > 0:
+        elif 0.1 * scale >= company.project_count >= 0:
             return def_font_size
         else:
-            raise ValueError("Hülye vagy")
+            raise ValueError("It's kind of magic!")
