@@ -14,7 +14,7 @@ class CompanyTagCloudGen(TagCloudGen):
             if company.project_count < min_count:
                 min_count = company.project_count
 
-        for company in companies:      
+        for company in companies:
             if company.project_colors:
                 self.tag_cloud_items.append(TagCloudItem(company.name, self.scaling(
                     company, min_count, max_count), self.color_avg(
@@ -33,7 +33,8 @@ class CompanyTagCloudGen(TagCloudGen):
             color_first_digit = round(color_first_digit/len(colors))
             color_second_digit = round(color_second_digit/len(colors))
             color_third_digit = round(color_third_digit/len(colors))
-        return [color_first_digit, color_second_digit, color_third_digit]
+            rgbcolor = (color_first_digit, color_second_digit, color_third_digit)
+        return rgbcolor
 
     @staticmethod
     def scaling(company, min_count, max_count):

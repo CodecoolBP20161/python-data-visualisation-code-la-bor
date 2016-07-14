@@ -14,7 +14,7 @@ class Menu:
         if option == "1":
             companies = Company.get_all()
             tagcloud = CompanyTagCloudGen(companies)
-            tagcloud.display()
+            tagcloud.display_company()
         elif option == "2":
             projects = Project.get_all()
             tagcloud = ProjectTagCloudGen(projects)
