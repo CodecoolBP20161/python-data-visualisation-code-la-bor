@@ -14,7 +14,6 @@ class TagCloudGen:
     def __init__(self):
         self.tag_cloud_items = []
 
-
     # def display(self, content):
     #     self.img = Image.new("RGB", (512, 512), "red")
     #     self.draw = ImageDraw.Draw(img)
@@ -29,5 +28,5 @@ class TagCloudGen:
     #     print(content)
 
     def display(self):
-        print(self.tag_cloud_items)
-        print(self.tag_cloud_items[0].__dict__)
+        # print(self.tag_cloud_items)
+        print(self.tag_cloud_items[1].__dict__)

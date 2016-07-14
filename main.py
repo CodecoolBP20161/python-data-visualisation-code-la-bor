@@ -3,28 +3,31 @@ from tagcloudgen import TagCloudGen
 from companytagcloudgen import CompanyTagCloudGen
 from company import Company
 from project import Project
+from projectcloudgen import ProjectTagCloudGen
 
 
 class Menu:
 
     @staticmethod
     def choose():
-        option = input("Please enter a number: ")
+        option = input("Please enter the key of the option, that you want to choose: ")
         if option == "1":
             companies = Company.get_all()
             tagcloud = CompanyTagCloudGen(companies)
             tagcloud.display()
         elif option == "2":
             projects = Project.get_all()
-            TagCloudGen.display(projects)
+            tagcloud = ProjectTagCloudGen(projects)
+            tagcloud.display()
+            # TagCloudGen.display(projects)
         elif option == "q":
             exit()
-        # else:
-        #     raise KeyError("There is no such option.")
+        else:
+            raise KeyError("There is no such option.")
 
     @staticmethod
     def handle_menu():
-        print("Main menu\n", "1: Client tag-cloud\n", "2: Project tag-cloud\n", "Press Q to EXIT")
+        print("\tMain menu\n", "\t\t1: Client tag-cloud\n", "\t\t2: Project tag-cloud\n", "\tPress Q to EXIT")
 
     @staticmethod
     def main():
@@ -33,7 +36,7 @@ class Menu:
             try:
                 Menu.choose()
             except KeyError as err:
-                print("error message")
+                print("Please choose from these options:")
 
 
 if __name__ == '__main__':

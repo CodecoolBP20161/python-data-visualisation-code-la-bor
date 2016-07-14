@@ -1,9 +1,9 @@
 from connect_db import ConnectDatabase
 
 
-class Project:
-    def __init__(self, project_name, value, color):
-        self.project_name = project_name
+class Project():
+    def __init__(self, name, value, color):
+        self.name = name
         self.value = value
         self.color = color
 

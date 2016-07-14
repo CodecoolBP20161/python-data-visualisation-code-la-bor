@@ -9,7 +9,7 @@ class Company:
 
     @classmethod
     def get_all(cls):
-        query = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') AS color FROM project GROUP BY company_name;"
+        query = "SELECT company_name, COUNT(company_name), string_agg (main_color, ' ') AS color FROM project  GROUP BY company_name;"
         rows = ConnectDatabase.run_query(query)
         companies = []
         for row in rows:
