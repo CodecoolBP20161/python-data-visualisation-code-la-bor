@@ -1,7 +1,7 @@
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
-from display5 import Display
+from display import Display
 
 
 class TagCloudItem:
