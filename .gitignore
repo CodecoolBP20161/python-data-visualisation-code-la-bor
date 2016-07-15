@@ -100,7 +100,7 @@ ENV/
 .ropeproject
 
 # Sample image
-sample-out.png
+*.png
 
 # Connection string
 connect_str.txt
