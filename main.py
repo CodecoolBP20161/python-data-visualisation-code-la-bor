@@ -20,6 +20,10 @@ class Menu:
             tagcloud = ProjectTagCloudGen(projects)
             tagcloud.display()
             # TagCloudGen.display(projects)
+        elif option == "3":
+            hqs = Hq.get_all()
+            tagcloud = HqTagCloudGen(hqs)
+            #tagcloud.display_hq()
         elif option == "q":
             exit()
         else:
@@ -27,7 +31,7 @@ class Menu:
 
     @staticmethod
     def handle_menu():
-        print("\tMain menu\n", "\t\t1: Client tag-cloud\n", "\t\t2: Project tag-cloud\n", "\tPress Q to EXIT")
+        print("\tMain menu\n", "\t\t1: Client tag-cloud\n", "\t\t2: Project tag-cloud\n", "\t\t3: HQ tag-cloud\n""\tPress Q to EXIT")
 
     @staticmethod
     def main():
