@@ -21,8 +21,7 @@ class ProjectTagCloudGen(TagCloudGen):
     @staticmethod
     def scaling(project, min_value, max_value):
         scale = max_value - min_value
-        def_font_size = 4
-        # print(scale)
+        def_font_size = 8
         if project.value > 0.9 * scale:
             return def_font_size * 10
         elif 0.9*scale >= project.value > 0.8 * scale:

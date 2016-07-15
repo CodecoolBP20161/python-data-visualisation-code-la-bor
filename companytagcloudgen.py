@@ -39,7 +39,7 @@ class CompanyTagCloudGen(TagCloudGen):
     @staticmethod
     def scaling(company, min_count, max_count):
         scale = max_count - min_count
-        def_font_size = 3
+        def_font_size = 9
         if company.project_count > 0.9 * scale:
             return def_font_size * 10
         elif 0.9 * scale >= company.project_count > 0.8 * scale:
