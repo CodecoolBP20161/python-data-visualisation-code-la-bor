@@ -3,7 +3,7 @@ from connect_db import ConnectDatabase
 
 class Hq():
     def __init__(self, name, value, color):
-        self.name = name
+        self.name = str(name.encode('utf-8'))
         self.value = value
         self.color = color
 
@@ -18,6 +18,6 @@ class Hq():
         rows = ConnectDatabase.run_query(query)
         hqs = []
         for row in rows:
-            hq.append(Hq(row[0], row[1], row[2]))
+            hqs.append(Hq(row[0], row[1], row[2]))
 
         return hqs

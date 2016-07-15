@@ -16,5 +16,5 @@ class TagCloudGen:
         self.tag_cloud_items = []
 
 
-    def display_company(self):
+    def display(self):
         Display.draw(self.tag_cloud_items)

@@ -4,7 +4,8 @@ from companytagcloudgen import CompanyTagCloudGen
 from company import Company
 from project import Project
 from projectcloudgen import ProjectTagCloudGen
-
+from hq import Hq
+from hqtagcloudgen import HqTagCloudGen
 
 class Menu:
 
@@ -14,7 +15,7 @@ class Menu:
         if option == "1":
             companies = Company.get_all()
             tagcloud = CompanyTagCloudGen(companies)
-            tagcloud.display_company()
+            tagcloud.display()
         elif option == "2":
             projects = Project.get_all()
             tagcloud = ProjectTagCloudGen(projects)
@@ -23,7 +24,7 @@ class Menu:
         elif option == "3":
             hqs = Hq.get_all()
             tagcloud = HqTagCloudGen(hqs)
-            #tagcloud.display_hq()
+            tagcloud.display()
         elif option == "q":
             exit()
         else:

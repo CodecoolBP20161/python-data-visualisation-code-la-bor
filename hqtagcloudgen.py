@@ -15,10 +15,10 @@ class HqTagCloudGen(TagCloudGen):
                 min_value = hq.value
 
         for hq in hqs:
-            if hq.project_colors:
+            if hq.color:
                 self.tag_cloud_items.append(TagCloudItem(hq.name, self.scaling(
                     hq, min_value, max_value), self.color_avg(
-                    hq.project_colors.split(" "))))
+                    hq.color.split(" "))))
 
     @staticmethod
     def color_avg(colors):
@@ -40,7 +40,7 @@ class HqTagCloudGen(TagCloudGen):
     def scaling(hq, min_value, max_value):
         scale = max_value - min_value
         def_font_size = 8
-        if hq.project_value > 0.9 * scale:
+        if hq.value > 0.9 * scale:
             return def_font_size * 10
         elif 0.9 * scale >= hq.value > 0.8 * scale:
             return def_font_size * 9

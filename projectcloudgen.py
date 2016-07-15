@@ -54,4 +54,4 @@ class ProjectTagCloudGen(TagCloudGen):
         color_first_digit += int(color[0], 16)*17
         color_second_digit += int(color[1], 16)*17
         color_third_digit += int(color[2], 16)*17
-        return [color_first_digit, color_second_digit, color_third_digit]
+        return (color_first_digit, color_second_digit, color_third_digit)
